@@ -1,0 +1,48 @@
+/*
+GESTION DE STOCK
+CSS FILE
+BY ULYSSE VALDENAIRE
+08/08/2021
+*/
+
+h1,
+h3 {
+  text-align: center;
+}
+
+#container {
+  margin: 20px;
+  display: flex;
+  width: 100%;
+}
+
+#products {
+  width: 70%;
+}
+
+#options {
+  width: 40%;
+}
+
+form {
+  width: 25%;
+}
+
+#menu {
+  width: 45%;
+  margin: auto;
+}
+
+button {
+  margin: 5px;
+}
+
+input,
+label {
+  margin: 10px;
+}
+
+.divProduct {
+  height: 80px;
+  margin-left: 50px;
+}
