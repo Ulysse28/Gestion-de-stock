@@ -16,13 +16,15 @@ h3 {
   width: 100%;
 }
 
-#products {
+ /* #products {
   width: 70%;
-}
 
-#options {
+  
+}  */
+
+/* #options {
   width: 40%;
-}
+} */
 
 form {
   width: 25%;
@@ -45,4 +47,24 @@ label {
 .divProduct {
   height: 80px;
   margin-left: 50px;
+}
+
+
+@media screen and (max-width:400px){
+
+  body{
+    background:red;
+  }
+
+  #container{
+    display:block;
+  }
+  #products{
+   
+    display:inline-block;
+  }
+
+  #menu{
+    width: 70%;
+  }
 }
