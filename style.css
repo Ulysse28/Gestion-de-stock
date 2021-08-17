@@ -16,15 +16,15 @@ h3 {
   width: 100%;
 }
 
- /* #products {
+  #products {
   width: 70%;
 
   
-}  */
+}  
 
-/* #options {
+ #options {
   width: 40%;
-} */
+} 
 
 form {
   width: 25%;
@@ -58,13 +58,27 @@ label {
 
   #container{
     display:block;
+    margin:0;
   }
   #products{
    
     display:inline-block;
+    width:100%;
+   
+  }
+  #options{
+    width:100%;
   }
 
   #menu{
     width: 70%;
+  }
+  #h1{
+    text-align: center;
+  }
+
+  form{
+    margin:auto;
+    width:50%;
   }
 }
