@@ -40,6 +40,7 @@ function addProduct(
   form.appendChild(inputStockMin);
   form.appendChild(br4);
   form.appendChild(btnValider);
+  btnValider.setAttribute('id', 'btnValider');
   form.appendChild(btnReset);
   divForm.append(form);
   sectionOptions.appendChild(divForm);

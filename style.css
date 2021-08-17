@@ -5,8 +5,27 @@ BY ULYSSE VALDENAIRE
 08/08/2021
 */
 
+body {
+ color:white;
+  margin:0;
+  background:rgb(71, 67, 67);
+}
+
+#btnValider{
+  margin-left:40px;
+}
+
+
+h1{
+  background:rgb(71, 67, 67);
+  color:white;
+  padding:10px;
+  margin-top:0;
+}
+
+
 h1,
-h3 {
+h2 {
   text-align: center;
 }
 
@@ -16,15 +35,13 @@ h3 {
   width: 100%;
 }
 
-  #products {
+#products {
   width: 70%;
+}
 
-  
-}  
-
- #options {
+#options {
   width: 40%;
-} 
+}
 
 form {
   width: 25%;
@@ -33,10 +50,16 @@ form {
 #menu {
   width: 45%;
   margin: auto;
+ background:rgb(71, 67, 67);
 }
 
 button {
   margin: 5px;
+  background:black;
+  border-radius:10px;
+  border-color:grey;
+  color:white;
+  padding:4px;
 }
 
 input,
@@ -49,36 +72,28 @@ label {
   margin-left: 50px;
 }
 
-
-@media screen and (max-width:400px){
-
-  body{
-    background:red;
+@media screen and (max-width: 500px) {
+  #container {
+    display: block;
+    margin: 0;
+  }
+  #products {
+    display: inline-block;
+    width: 100%;
+  }
+  #options {
+    width: 100%;
   }
 
-  #container{
-    display:block;
-    margin:0;
-  }
-  #products{
-   
-    display:inline-block;
-    width:100%;
-   
-  }
-  #options{
-    width:100%;
-  }
-
-  #menu{
+  #menu {
     width: 70%;
   }
-  #h1{
+  #h1 {
     text-align: center;
   }
 
-  form{
-    margin:auto;
-    width:50%;
+  form {
+    margin: auto;
+    width: 50%;
   }
 }
