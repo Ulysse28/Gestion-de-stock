@@ -49,9 +49,8 @@ const inputStockMin = document.createElement("input");
 inputStockMin.setAttribute("type", "number");
 const btnValider = document.createElement("button");
 btnValider.textContent = "valider";
-const btnReset = document.createElement('button');
-btnReset.textContent = 'Cacher le formualire';
-
+const btnReset = document.createElement("button");
+btnReset.textContent = "Cacher le formualire";
 
 let br = document.createElement("br");
 const br1 = document.createElement("br");
@@ -60,10 +59,6 @@ let br5 = document.createElement("br");
 let br4 = document.createElement("br");
 const br3 = document.createElement("br");
 const divList = document.createElement("div");
-
-
-
-
 
 //array des produits
 listProducts = [];
@@ -101,7 +96,7 @@ btnAjouter.addEventListener("click", function () {
 //au click sur le bouton valider --> l'objet est envoyé dans le local storage
 btnValider.addEventListener("click", function (event) {
   event.preventDefault();
-  addProductLocalStorage(); 
+  addProductLocalStorage();
 });
 
 //Boutton radio pour les produits par defaults, les input Stock sont désactivés
@@ -122,10 +117,9 @@ radioNormal.addEventListener("change", function () {
 
 //supprimer tout le contenu du local storage
 document.getElementById("deleteAll").addEventListener("click", function () {
-
   localStorage.clear();
   divProduct.textContent = "";
-  alert('Tous les produits ont été supprimés !');
+  alert("Tous les produits ont été supprimés !");
 });
 
 //Modifier un produit
@@ -140,9 +134,9 @@ btnDelete.addEventListener("click", function () {
 });
 
 //Cacher le formulaire
-btnReset.addEventListener('click', function(){
+btnReset.addEventListener("click", function () {
   sectionOptions.removeChild(divForm);
-})
+});
 
 //Afficher la liste de courses
 let btnShoppingListe = document.getElementById("shoppingList");
@@ -152,40 +146,32 @@ btnShoppingListe.addEventListener("click", function () {
   sectionProducts.removeChild(divProduct);
 });
 
-document.getElementById('list').addEventListener('click', function(){
-
+document.getElementById("list").addEventListener("click", function () {
   divProduct.remove(divList);
-  let liste = document.getElementsByClassName('productList');
+  let liste = document.getElementsByClassName("productList");
   console.log(liste);
-  let listProduct = localStorage.getItem('products');
-  listProduct =   JSON.parse(listProduct);
+  let listProduct = localStorage.getItem("products");
+  listProduct = JSON.parse(listProduct);
   console.log(listProduct);
   let finalList = [];
   let finalPrice = 0;
-  for(let i = 0; i < liste.length; i++){
-    for(let j = 0; j < listProduct.length; j++){
-      if(liste[i].name === listProduct[j].id && liste[i].checked === true){
+  for (let i = 0; i < liste.length; i++) {
+    for (let j = 0; j < listProduct.length; j++) {
+      if (liste[i].name === listProduct[j].id && liste[i].checked === true) {
         console.log(listProduct[j]);
-        finalList.push(listProduct[j])
+        finalList.push(listProduct[j]);
       }
     }
   }
-
-  const title = document.createElement('p');
+  const title = document.createElement("p");
   title.textContent = "Liste de course";
-
   divList.appendChild(title);
-
-
-  for(product of finalList){
+  for (product of finalList) {
     createElementList(product);
     finalPrice = finalPrice + Number(product.price);
   }
-
- 
-
-
-
-
+  let finalPriceText = document.createElement("p");
+  finalPriceText.textContent = "Prix total : " + finalPrice;
+  divList.appendChild(finalPriceText);
   console.log(finalPrice);
-})
+});

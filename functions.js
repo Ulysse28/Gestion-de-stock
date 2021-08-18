@@ -225,12 +225,5 @@ function createElementList(product) {
     productToBuy.textContent = name + "  " + price;
   }
   divList.appendChild(productToBuy);
-
-
-
- 
-
-
   sectionProducts.appendChild(divList);
- 
 }
