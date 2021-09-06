@@ -57,7 +57,9 @@ const br1 = document.createElement("br");
 const br2 = document.createElement("br");
 let br5 = document.createElement("br");
 let br4 = document.createElement("br");
+const br6 = document.createElement('br');
 const br3 = document.createElement("br");
+const br7 = document.createElement('br');
 const divList = document.createElement("div");
 
 //array des produits

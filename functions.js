@@ -16,8 +16,10 @@ function addProduct(
   form.appendChild(Title);
   form.appendChild(br);
   form.appendChild(labelType);
+  form.appendChild(br6);
   form.appendChild(radioDefault);
   form.appendChild(defaultTxt);
+  form.appendChild(br7);
   form.appendChild(radioNormal);
   form.appendChild(normalTxt);
   inputID.setAttribute("value", valueID);

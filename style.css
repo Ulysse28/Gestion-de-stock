@@ -6,9 +6,9 @@ BY ULYSSE VALDENAIRE
 */
 
 body {
-  color: white;
+
   margin: 0;
-  background: rgb(71, 67, 67);
+
 }
 
 #btnValider {
@@ -16,7 +16,7 @@ body {
 }
 
 h1 {
-  background: rgb(71, 67, 67);
+  background: rgb(24, 24, 122);
   color: white;
   padding: 10px;
   margin-top: 0;
@@ -42,13 +42,15 @@ h2 {
 }
 
 form {
-  width: 25%;
+  width: 40%;
+  border:2px solid black;
+  padding:10px;
 }
 
 #menu {
   width: 40%;
   margin: auto;
-  background: rgb(71, 67, 67);
+ 
 }
 
 button {
@@ -66,8 +68,11 @@ label {
 }
 
 .divProduct {
-  height: 80px;
+  height: 200px;
   margin-left: 50px;
+  background-color: rgb(68, 95, 214);
+  width:500px;
+  border-radius:10px;
 }
 
 @media screen and (max-width: 500px) {
