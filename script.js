@@ -74,6 +74,8 @@ let btnReturnList = document.createElement("button");
 btnReturnList.setAttribute("class", "btn btn-info");
 btnReturnList.textContent = "Retour liste produits";
 
+let liste;
+
 //array des produits
 listProducts = [];
 
@@ -230,13 +232,15 @@ document.getElementById("list").addEventListener("click", function () {
       }
     }
   }
-  const title = document.createElement("p");
+  const title = document.createElement("h3");
   title.textContent = "Liste de course";
   divList.appendChild(title);
+   listeUl = document.createElement('ul');
   for (product of finalList) {
-    createElementList(product);
+    displayShoppingList(product);
     finalPrice = finalPrice + Number(product.price);
   }
+  divList.appendChild(listeUl);
   let finalPriceText = document.createElement("p");
   finalPriceText.textContent = "Prix total : " + finalPrice + " €";
   finalPriceText.setAttribute("id", "price");
@@ -246,12 +250,11 @@ document.getElementById("list").addEventListener("click", function () {
   this.disabled = true;
 });
 
+
 btnReturnList.addEventListener("click", function () {
   btnAjouter.disabled = false;
   btnDelete.disabled = false;
   btnModifier.disabled = false;
-
   sectionProducts.removeChild(divList);
-
   divProduct.classList.remove("nodisplay");
 });

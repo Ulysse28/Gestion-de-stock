@@ -248,3 +248,19 @@ function createElementList(product) {
   divList.appendChild(productToBuy);
   sectionProducts.appendChild(divList);
 }
+
+function displayShoppingList(product){
+  const name = product.name;
+  const price = product.price;
+  let productToBuy = document.createElement('li');
+  if (product.type === "normal") {
+    let number = product.stockMin - product.stockActu;
+    if (number === 0) {
+      number = 1;
+    }
+    productToBuy.textContent = number + "  " + name + " prix : " + price + " €";
+  } else {
+    productToBuy.textContent = name + "  " + price + " €";
+  }
+  listeUl.appendChild(productToBuy);
+}
