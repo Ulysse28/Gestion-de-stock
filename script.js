@@ -73,8 +73,15 @@ let stockMinValid;
 let btnReturnList = document.createElement("button");
 btnReturnList.setAttribute("class", "btn btn-info");
 btnReturnList.textContent = "Retour liste produits";
-
+let btnSaveList = document.createElement("button");
+btnSaveList.setAttribute("class", "btn btn-info");
+btnSaveList.textContent = "Sauvegarder la liste";
 let liste;
+let finalList = [];
+let listeUl = document.createElement("ul");
+
+const btnDisplayList = document.getElementById('displayList');
+let displayList = false;
 
 //array des produits
 listProducts = [];
@@ -221,7 +228,6 @@ document.getElementById("list").addEventListener("click", function () {
   let listProduct = localStorage.getItem("products");
   listProduct = JSON.parse(listProduct);
   console.log(listProduct);
-  let finalList = [];
   let finalPrice = 0;
   for (let i = 0; i < liste.length; i++) {
     for (let j = 0; j < listProduct.length; j++) {
@@ -235,7 +241,6 @@ document.getElementById("list").addEventListener("click", function () {
   const title = document.createElement("h3");
   title.textContent = "Liste de course";
   divList.appendChild(title);
-   listeUl = document.createElement('ul');
   for (product of finalList) {
     displayShoppingList(product);
     finalPrice = finalPrice + Number(product.price);
@@ -247,9 +252,9 @@ document.getElementById("list").addEventListener("click", function () {
   divList.appendChild(finalPriceText);
   console.log(finalPrice);
   divList.appendChild(btnReturnList);
+  divList.appendChild(btnSaveList);
   this.disabled = true;
 });
-
 
 btnReturnList.addEventListener("click", function () {
   btnAjouter.disabled = false;
@@ -257,4 +262,9 @@ btnReturnList.addEventListener("click", function () {
   btnModifier.disabled = false;
   sectionProducts.removeChild(divList);
   divProduct.classList.remove("nodisplay");
+});
+
+btnSaveList.addEventListener("click", function () {
+  let finalListString = JSON.stringify(finalList);
+  localStorage.setItem("productsToBuy", finalListString);
 });

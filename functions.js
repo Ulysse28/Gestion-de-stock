@@ -253,6 +253,7 @@ function displayShoppingList(product){
   const name = product.name;
   const price = product.price;
   let productToBuy = document.createElement('li');
+  productToBuy.setAttribute("class", 'elementList');
   if (product.type === "normal") {
     let number = product.stockMin - product.stockActu;
     if (number === 0) {
