@@ -57,7 +57,9 @@ function addProduct(
   form.appendChild(btnValider);
   btnValider.setAttribute("id", "btnValider");
   form.appendChild(btnReset);
+  form.setAttribute('class', 'col-8');
   divForm.append(form);
+  divForm.setAttribute('class', 'row');
   sectionOptions.appendChild(divForm);
 }
 
@@ -129,6 +131,8 @@ function createProduct(product) {
   divProduct.appendChild(productLine);
   const br = document.createElement("br");
   divProduct.appendChild(br);
+  divProduct.setAttribute('class', 'col-9');
+  divProduct.setAttribute('id', 'divProduct');
   sectionProducts.appendChild(divProduct);
 }
 

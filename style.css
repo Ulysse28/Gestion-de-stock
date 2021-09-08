@@ -4,100 +4,64 @@ CSS FILE
 BY ULYSSE VALDENAIRE
 08/08/2021
 */
+#container{
+  height:100vh;
+}
+
+p, h1{
+  color:white;
+}
+
+.container-fluid{
+  padding:0;
+}
+
+.top{
+  margin-bottom:10px;
+}
+input{
+  margin:5px;
+}
+
+.nodisplay{
+  display:none;
+}
+
+.display{
+  display:inline;
+}
+.displayBock{
+  display:block;
+}
+
+form{
+  margin:auto;
+}
+
+#divProduct{
+  margin:auto;
+}
+
+#products{
+  margin-bottom:50px;
+  padding-top:20px;
+}
+
+#options{
+  padding-top:20px;
+}
+
+#price{
+  color:red;
+}
 
 body {
-  margin: 0;
+	margin: 0;
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
 
-#btnValider {
-  margin-left: 40px;
-}
-
-h1 {
-  background: rgb(24, 24, 122);
-  color: white;
-  padding: 10px;
-  margin-top: 0;
-}
-
-h1,
-h2 {
-  text-align: center;
-}
-
-#container {
-  margin: 20px;
-  display: flex;
-  width: 100%;
-}
-
-#products {
-  width: 70%;
-}
-
-#options {
-  width: 40%;
-}
-
-form {
-  width: 40%;
-  border:2px solid black;
-  padding:10px;
-}
-
-#menu {
-  width: 40%;
-  margin: auto;
-}
-
-button {
-  margin: 5px;
-  background: black;
-  border-radius: 10px;
-  border-color: grey;
-  color: white;
-  padding: 4px;
-}
-
-input,
-label {
-  margin: 10px;
-}
-
-.divProduct {
-  height: 200px;
-  margin-left: 50px;
-  background-color: rgb(68, 95, 214);
-  width:500px;
-  border-radius:10px;
-}
-
-@media screen and (max-width: 500px) {
-
-  #container {
-    display: block;
-    margin: 0;
-  }
-
-  #products {
-    display: inline-block;
-    width: 100%;
-  }
-
-  #options {
-    width: 100%;
-  }
-
-  #menu {
-    width: 70%;
-  }
-  
-  #h1 {
-    text-align: center;
-  }
-
-  form {
-    margin: auto;
-    width: 50%;
-  }
+footer{
+  margin-top:50px;
 }

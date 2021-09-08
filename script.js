@@ -39,7 +39,7 @@ const labelPrice = document.createElement("label");
 labelPrice.textContent = "Prix : ";
 const inputPrice = document.createElement("input");
 inputPrice.setAttribute("type", "number");
-inputPrice.setAttribute('pattern', "[0-9]");
+inputPrice.setAttribute("pattern", "[0-9]");
 
 const labelStockActu = document.createElement("label");
 labelStockActu.textContent = "Stock actuel ";
@@ -50,8 +50,10 @@ labelStockMin.textContent = "Stock minimal";
 const inputStockMin = document.createElement("input");
 inputStockMin.setAttribute("type", "number");
 const btnValider = document.createElement("button");
+btnValider.setAttribute("class", "btn btn-dark");
 btnValider.textContent = "valider";
 const btnReset = document.createElement("button");
+btnReset.setAttribute("class", "btn btn-dark");
 btnReset.textContent = "Cacher le formualire";
 
 let br = document.createElement("br");
@@ -59,14 +61,18 @@ const br1 = document.createElement("br");
 const br2 = document.createElement("br");
 let br5 = document.createElement("br");
 let br4 = document.createElement("br");
-const br6 = document.createElement('br');
+const br6 = document.createElement("br");
 const br3 = document.createElement("br");
-const br7 = document.createElement('br');
+const br7 = document.createElement("br");
 const divList = document.createElement("div");
 
 let priceValid;
 let stockActuValid;
 let stockMinValid;
+
+let btnReturnList = document.createElement("button");
+btnReturnList.setAttribute("class", "btn btn-info");
+btnReturnList.textContent = "Retour liste produits";
 
 //array des produits
 listProducts = [];
@@ -98,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //au click ur le bouton 'ajouter un produit' --> un formulaire apparait
 btnAjouter.addEventListener("click", function () {
-  addProduct( "", 0, 0, 0,0);
+  addProduct("", 0, 0, 0, 0);
 });
 
 //au click sur le bouton valider --> l'objet est envoyé dans le local storage
@@ -110,11 +116,16 @@ btnValider.addEventListener("click", function (event) {
   console.log(priceValid);
   console.log(stockActuValid);
   console.log(stockMinValid);
-  if((radioDefault.checked)&&(priceValid)){
+  if (radioDefault.checked && priceValid) {
     addProductLocalStorage();
-  }else if((radioNormal.checked)&&(priceValid)&&(stockActuValid)&&(stockMinValid)){
+  } else if (
+    radioNormal.checked &&
+    priceValid &&
+    stockActuValid &&
+    stockMinValid
+  ) {
     addProductLocalStorage();
-  }else{
+  } else {
     alert("le formulaire n'est pas remplis correctement !");
   }
 });
@@ -158,44 +169,51 @@ btnReset.addEventListener("click", function () {
   sectionOptions.removeChild(divForm);
 });
 
+let btnListCourses = document.getElementById("list");
 //Afficher la liste de courses
 let btnShoppingListe = document.getElementById("shoppingList");
 btnShoppingListe.addEventListener("click", function () {
   console.log("hello");
   createShopList();
-  sectionProducts.removeChild(divProduct);
+  // sectionProducts.removeChild(divProduct);
+  divProduct.setAttribute("class", "nodisplay");
+  btnListCourses.classList.add("display");
+  btnShoppingListe.disabled = true;
+  btnAjouter.disabled = true;
+  btnModifier.disabled = true;
+  btnDelete.disabled = true;
 });
 
-function isValid(value){
+function isValid(value) {
   return /^[0-9]+$/.test(value);
 }
 
-function validatePrice(){
-  if(isValid(inputPrice.value)){
+function validatePrice() {
+  if (isValid(inputPrice.value)) {
     priceValid = true;
-  }else{
-    priceValid= false;
+  } else {
+    priceValid = false;
   }
 }
 
-function validateStockActu(){
-  if(isValid(inputStockActu.value)){
+function validateStockActu() {
+  if (isValid(inputStockActu.value)) {
     stockActuValid = true;
-  }else{
+  } else {
     stockActuValid = false;
   }
 }
 
-function validateStockMin(){
-  if(isValid(inputStockMin.value)){
+function validateStockMin() {
+  if (isValid(inputStockMin.value)) {
     stockMinValid = true;
-  }else{
+  } else {
     stockMinValid = false;
   }
-}  
+}
 
-document.getElementById('list').addEventListener('click', function(){
-  divProduct.remove(divList);
+document.getElementById("list").addEventListener("click", function () {
+  // divProduct.remove(divList);
   let liste = document.getElementsByClassName("productList");
   console.log(liste);
   let listProduct = localStorage.getItem("products");
@@ -204,23 +222,36 @@ document.getElementById('list').addEventListener('click', function(){
   let finalList = [];
   let finalPrice = 0;
   for (let i = 0; i < liste.length; i++) {
-        for (let j = 0; j < listProduct.length; j++) {
-          if (liste[i].name === listProduct[j].name && liste[i].checked === true) {
-            console.log(listProduct[j]);
-            finalList.push(listProduct[j]);
-            console.log(finalList);
-          }
-        }
+    for (let j = 0; j < listProduct.length; j++) {
+      if (liste[i].name === listProduct[j].name && liste[i].checked === true) {
+        console.log(listProduct[j]);
+        finalList.push(listProduct[j]);
+        console.log(finalList);
       }
-      const title = document.createElement("p");
-      title.textContent = "Liste de course";
-      divList.appendChild(title);
-      for (product of finalList) {
-        createElementList(product);
-        finalPrice = finalPrice + Number(product.price);
-      }
-      let finalPriceText = document.createElement("p");
-      finalPriceText.textContent = "Prix total : " + finalPrice;
-      divList.appendChild(finalPriceText);
-      console.log(finalPrice);
-    });
+    }
+  }
+  const title = document.createElement("p");
+  title.textContent = "Liste de course";
+  divList.appendChild(title);
+  for (product of finalList) {
+    createElementList(product);
+    finalPrice = finalPrice + Number(product.price);
+  }
+  let finalPriceText = document.createElement("p");
+  finalPriceText.textContent = "Prix total : " + finalPrice + " €";
+  finalPriceText.setAttribute("id", "price");
+  divList.appendChild(finalPriceText);
+  console.log(finalPrice);
+  divList.appendChild(btnReturnList);
+  this.disabled = true;
+});
+
+btnReturnList.addEventListener("click", function () {
+  btnAjouter.disabled = false;
+  btnDelete.disabled = false;
+  btnModifier.disabled = false;
+
+  sectionProducts.removeChild(divList);
+
+  divProduct.classList.remove("nodisplay");
+});
