@@ -6,9 +6,7 @@ BY ULYSSE VALDENAIRE
 */
 
 body {
-
   margin: 0;
-
 }
 
 #btnValider {
@@ -50,7 +48,6 @@ form {
 #menu {
   width: 40%;
   margin: auto;
- 
 }
 
 button {
@@ -76,14 +73,17 @@ label {
 }
 
 @media screen and (max-width: 500px) {
+
   #container {
     display: block;
     margin: 0;
   }
+
   #products {
     display: inline-block;
     width: 100%;
   }
+
   #options {
     width: 100%;
   }
@@ -91,6 +91,7 @@ label {
   #menu {
     width: 70%;
   }
+  
   #h1 {
     text-align: center;
   }

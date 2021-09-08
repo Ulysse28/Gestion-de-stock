@@ -7,7 +7,7 @@
 
 //fonction qui crée un formulaire pour ajouter un produit
 function addProduct(
-  valueID,
+  valueType,
   valueName,
   valuePrice,
   valueStockActu,
@@ -17,16 +17,28 @@ function addProduct(
   form.appendChild(br);
   form.appendChild(labelType);
   form.appendChild(br6);
+  if (valueType == "default") {
+    radioDefault.checked = true;
+  }
   form.appendChild(radioDefault);
   form.appendChild(defaultTxt);
   form.appendChild(br7);
+  if (valueType == "normal") {
+    radioNormal.checked = true;
+  }
+  console.log(valueType);
   form.appendChild(radioNormal);
   form.appendChild(normalTxt);
   // inputID.setAttribute("value", valueID);
   // form.appendChild(inputID);
   form.appendChild(br5);
   form.appendChild(labelName);
-  inputName.setAttribute("value", valueName);
+  if(valueName == 0){
+    valueName="";
+    inputName.setAttribute('placeholder', 'Entrez le nom du produit');
+  }
+ inputName.setAttribute("value", valueName);
+  console.log(valueName);
   form.appendChild(inputName);
   form.appendChild(br1);
   form.appendChild(labelPrice);
@@ -39,6 +51,7 @@ function addProduct(
   form.appendChild(br3);
   form.appendChild(labelStockMin);
   inputStockMin.setAttribute("value", valueStockMin);
+  console.log(valueStockActu);
   form.appendChild(inputStockMin);
   form.appendChild(br4);
   form.appendChild(btnValider);
@@ -102,14 +115,14 @@ function createProduct(product) {
   if (product.type === "normal") {
     productLine.textContent =
       product.name +
-      " prix : " +
+      " Prix : " +
       product.price +
-      " stock actuelle : " +
+      " Stock actuel : " +
       product.stockActu +
-      " stock minimun : " +
+      " Stock minimal : " +
       product.stockMin;
   } else {
-    productLine.textContent = product.name + " prix : " + product.price;
+    productLine.textContent = product.name + " Prix : " + product.price;
   }
   productLine.setAttribute("for", product.name);
   productLine.setAttribute("class", "products");
@@ -149,13 +162,14 @@ function deleteProduct(add) {
       if (listProducts[i].name === checkbox.name) {
         if (add === true && listProducts[i].type == "default") {
           addProduct(
-            listProducts[i].id,
+         
+            listProducts[i].type,
             listProducts[i].name,
             listProducts[i].price
           );
         } else if (add == true && listProducts[i].type == "normal") {
           addProduct(
-            listProducts[i].id,
+            listProducts[i].type,
             listProducts[i].name,
             listProducts[i].price,
             listProducts[i].stockActu,
@@ -205,13 +219,6 @@ function createShopList() {
       totalPrice += product.price * number;
       console.log(totalPrice);
     }
-    /*
-    let totalPriceElement = document.createElement("p");
-    totalPriceElement.textContent = totalPrice;
-    console.log(totalPrice);
-    
-    divList.appendChild(totalPriceElement);
-  */
   }
 }
 
@@ -221,7 +228,7 @@ function createElementList(product) {
   const price = product.price;
   const radioProduct = document.createElement("input");
   radioProduct.setAttribute("type", "checkbox");
-  radioProduct.setAttribute("name", product.id);
+  radioProduct.setAttribute("name", product.name);
   radioProduct.setAttribute("class", "productList");
   divList.appendChild(radioProduct);
   const productToBuy = document.createElement("label");
