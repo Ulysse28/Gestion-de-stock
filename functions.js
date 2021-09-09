@@ -4,7 +4,7 @@
     BY ULYSSE VALDENAIRE
     15/08/2021
 */
-
+let finalPriceList = 0;
 //fonction qui crée un formulaire pour ajouter un produit
 function addProduct(
   valueType,
@@ -117,14 +117,14 @@ function createProduct(product) {
   if (product.type === "normal") {
     productLine.textContent =
       product.name +
-      " Prix : " +
-      product.price +
+      " Prix : " + 
+      product.price + " €"+
       " Stock actuel : " +
       product.stockActu +
       " Stock minimal : " +
       product.stockMin;
   } else {
-    productLine.textContent = product.name + " Prix : " + product.price;
+    productLine.textContent = product.name + " Prix : " + product.price + " €";
   }
   productLine.setAttribute("for", product.name);
   productLine.setAttribute("class", "products");
@@ -243,7 +243,7 @@ function createElementList(product) {
     }
     productToBuy.textContent = number + "  " + name + " prix : " + price + " €";
   } else {
-    productToBuy.textContent = name + "  " + price;
+    productToBuy.textContent = name + "  " + price  + " €";
   }
   divList.appendChild(productToBuy);
   sectionProducts.appendChild(divList);
@@ -264,4 +264,27 @@ function displayShoppingList(product){
     productToBuy.textContent = name + "  " + price + " €";
   }
   listeUl.appendChild(productToBuy);
+}
+
+function displaySavedShoopinList(product){
+if(listeUl === null){
+   listeUl = document.createElement("ul");
+}
+  const name = product.name;
+  const price = product.price;
+  let productToBuy = document.createElement('li');
+  productToBuy.setAttribute("class", 'elementList');
+  if (product.type === "normal") {
+    let number = product.stockMin - product.stockActu;
+    if (number === 0) {
+      number = 1;
+    }
+    productToBuy.textContent = number + "  " + name + " prix : " + price +" €";
+    finalPriceList += Number(price) * number;
+  } else {
+    productToBuy.textContent = name + "  " + price +" €" ;
+    finalPriceList += Number(price);
+  }
+  listeUl.appendChild(productToBuy);
+  console.log(finalPriceList);
 }

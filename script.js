@@ -80,8 +80,13 @@ let liste;
 let finalList = [];
 let listeUl = document.createElement("ul");
 
-const btnDisplayList = document.getElementById('displayList');
+const btnDisplayList = document.getElementById("displayList");
 let displayList = false;
+
+let title = document.createElement("h3");
+title.textContent = "Votre liste de courses : ";
+let finalPriceListText = document.createElement("p");
+finalPriceListText.setAttribute("id", "price");
 
 //array des produits
 listProducts = [];
@@ -156,6 +161,7 @@ radioNormal.addEventListener("change", function () {
 });
 
 //supprimer tout le contenu du local storage
+let btnDeleteAll = document.getElementById("deleteAll");
 document.getElementById("deleteAll").addEventListener("click", function () {
   localStorage.clear();
   divProduct.textContent = "";
@@ -191,6 +197,8 @@ btnShoppingListe.addEventListener("click", function () {
   btnAjouter.disabled = true;
   btnModifier.disabled = true;
   btnDelete.disabled = true;
+  btnDisplayList.disabled = true;
+  btnDeleteAll.disabled = true;
 });
 
 function isValid(value) {
@@ -243,7 +251,11 @@ document.getElementById("list").addEventListener("click", function () {
   divList.appendChild(title);
   for (product of finalList) {
     displayShoppingList(product);
-    finalPrice = finalPrice + Number(product.price);
+    if(product.type=="normal"){
+      finalPrice += Number(product.price)*(product.stockMin - product.stockActu);
+    }else{
+      finalPrice += Number(product.price);
+    }
   }
   divList.appendChild(listeUl);
   let finalPriceText = document.createElement("p");
@@ -254,17 +266,52 @@ document.getElementById("list").addEventListener("click", function () {
   divList.appendChild(btnReturnList);
   divList.appendChild(btnSaveList);
   this.disabled = true;
+  btnDeleteAll.disabled = true;
 });
 
+//Retourn à la liste des produits
 btnReturnList.addEventListener("click", function () {
   btnAjouter.disabled = false;
   btnDelete.disabled = false;
   btnModifier.disabled = false;
+  btnDeleteAll.disabled = false;
+  btnShoppingListe.disabled = false;
+  btnDisplayList.disabled = false;
+  btnListCourses.classList.remove("display");
   sectionProducts.removeChild(divList);
   divProduct.classList.remove("nodisplay");
+  listeUl = null;
 });
 
+//sauvegarde la liste de courses
 btnSaveList.addEventListener("click", function () {
   let finalListString = JSON.stringify(finalList);
   localStorage.setItem("productsToBuy", finalListString);
+});
+
+//afficher la liste de courses
+btnDisplayList.addEventListener("click", function () {
+  let products = JSON.parse(localStorage.getItem("productsToBuy"));
+  if(products === null){
+    alert('aucune liste de courses enregistrée !');
+  }
+  for (product of products) {
+    displaySavedShoopinList(product);
+  }
+  if (displayList == false) {
+    divProduct.appendChild(title);
+    divProduct.appendChild(listeUl);
+    finalPriceListText.textContent = finalPriceList + " €";
+    divProduct.appendChild(finalPriceListText);
+    this.textContent = "retour";
+    displayList = true;
+  } else {
+    divProduct.removeChild(listeUl);
+    divProduct.removeChild(title);
+    divProduct.removeChild(finalPriceListText);
+    finalPriceList = 0;
+    listeUl = null;
+    displayList = false;
+    this.textContent = "Voir la liste de courses";
+  }
 });
